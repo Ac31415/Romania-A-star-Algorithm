@@ -5,6 +5,14 @@
 #   Time: 20:59
 #
 
+#
+#   Adopted by Wen-Chung Cheng (Andy) for
+#   A1 of Intro to AI course at Florida Atlantic University
+#   User: Wen-Chung Cheng (Andy)
+#   Date: 17/03/2019
+#   Time: 20:59
+#
+
 import heapq
 
 
@@ -26,7 +34,7 @@ class priorityQueue:
 
     def check(self):
         print(self.cities)
-        
+
 # class priorityStack:
 #     def __init__(self):
 #         self.cities = []
@@ -82,7 +90,7 @@ def heuristic(node, values):
     return values[node]
 
 
-def getList(dict): 
+def getList(dict):
     return [*dict]
 
 
@@ -118,7 +126,7 @@ def astar(start, end):
                 f_cost = g_cost + heuristic(new.city, h)
                 q.push(new.city, f_cost)
                 path[new.city] = current
-                
+
             # if (g_cost < distance[new.city]):
             #     # print(new.city, new.distance, "now : " + str(distance[current]), g_cost)
             #     distance[new.city] = g_cost
@@ -128,8 +136,8 @@ def astar(start, end):
 
 
     printoutputAstar(start, end, path, distance, expandedList)
-    
-    
+
+
 def run_dfs_ultra_alt(start, end):
     path = {}
     distance = {}
@@ -170,21 +178,21 @@ def run_dfs_ultra_alt(start, end):
 
 
     printoutputDFS(start, end, path, distance, expandedList)
-    
+
 
 def run_bfs_alt(start, end):
-    
+
     path = {}
     distance = {}
     q = priorityQueue()
     h = makehuristikdict()
-    
+
     # Append the current node to the queue
     q.push(start, 0)
     distance[start] = 0
     path[start] = None
     expandedList = []
-    
+
     if start == end:
         printoutputBFS(start, end, path, distance, expandedList)
     else:
@@ -211,23 +219,23 @@ def run_bfs_alt(start, end):
                         printoutputBFS(start, end, path, distance, expandedList)
         # In the case that no path to the goal was found
         return 'No path to the goal found.'
-    
-    
-    
+
+
+
 def run_bfs(start, end):
-    
+
     path = {}
     distance = {}
     q = priorityQueue()
     h = makehuristikdict()
-    
+
     # Append the current node to the queue
     q.push(start, 0)
     distance[start] = 0
     path[start] = None
     expandedList = []
     expandedList.append(start)
-    
+
     if start == end:
         printoutputBFS(start, end, path, distance, expandedList)
     else:
@@ -255,9 +263,9 @@ def run_bfs(start, end):
                         printoutputBFS(start, end, path, distance, expandedList)
         # In the case that no path to the goal was found
         return 'No path to the goal found.'
-    
-    
-    
+
+
+
 def run_dfs(start, end):
     path = {}
     distance = {}
@@ -268,7 +276,7 @@ def run_dfs(start, end):
     # distance[start] = 0
     path[start] = None
     expandedList = []
-    
+
     # Keep searching while there are nodes in the stack
     while (q.isEmpty() == False):
         # Set the next node in the stack as the current node
@@ -304,7 +312,7 @@ def run_dfs_alt(start, end):
     distance[start] = 0
     path[start] = None
     expandedList = []
-    
+
     # Keep searching while there are nodes in the stack
     while (q.isEmpty() == False):
         # Set the next node in the stack as the current node
@@ -332,7 +340,7 @@ def run_dfs_alt(start, end):
                         q.push(neighbor.city, f_cost)
     # return 'No path to the goal found.'
     # print('\nNo path to the goal found.')
-    
+
 def run_dfs_alt_alt(start, end):
     path = {}
     distance = {}
@@ -343,12 +351,12 @@ def run_dfs_alt_alt(start, end):
     distance[start] = 0
     path[start] = None
     expandedList = [start]
-    
+
     # Keep searching while there are nodes in the stack
     while (q.isEmpty() == False):
         # Set the next node in the stack as the current node
         next_point = q.pop()
-        
+
         neighbors = romania[next_point]
         for neighbor in neighbors:
             if neighbor.city == end:
@@ -367,7 +375,7 @@ def run_dfs_alt_alt(start, end):
                     distance[neighbor.city] = g_cost
                     f_cost = g_cost + heuristic(neighbor.city, h)
                     q.push(neighbor.city, f_cost)
-                    
+
     printoutputDFS(start, end, path, distance, expandedList)
 
 
@@ -397,10 +405,10 @@ def printoutputAstar(start, end, path, distance, expandedlist):
         else:
             print('\t\t\t\t\t' + finalpath[i-1] + ' to ' + finalpath[i] + ':', distance[finalpath[i]] - distance[finalpath[i-1]], 'km')
     print("\t\t\t\t\tTotal distance: " + str(distance[end]) + " km")
-        
+
     # for c in finalpath:
     #     last_city = c
-    
+
 def printoutputBFS(start, end, path, distance, expandedlist):
     finalpath = []
     i = end
@@ -418,7 +426,7 @@ def printoutputBFS(start, end, path, distance, expandedlist):
         else:
             print('\t\t\t\t\t' + finalpath[i-1] + ' to ' + finalpath[i] + ':', distance[finalpath[i]] - distance[finalpath[i-1]], 'km')
     print("\t\t\t\t\tTotal distance: " + str(distance[end]) + " km")
-    
+
 def printoutputDFS(start, end, path, distance, expandedlist):
     finalpath = []
     i = end
@@ -436,11 +444,11 @@ def printoutputDFS(start, end, path, distance, expandedlist):
         else:
             print('\t\t\t\t\t' + finalpath[i-1] + ' to ' + finalpath[i] + ':', distance[finalpath[i]] - distance[finalpath[i-1]], 'km')
     print("\t\t\t\t\tTotal distance: " + str(distance[end]) + " km")
-        
+
 
 
 def main():
-    
+
     Cont = True
     Cities = getList(makehuristikdict())
     # print(Cities[0])
@@ -448,23 +456,23 @@ def main():
     makedict()
     # print(makedict())
     # print(romania['Arad'])
-    
+
     while Cont:
-    
+
         starting_point = input("Location of departure: ")
 
         while starting_point not in Cities:
             starting_point = input("Location not on map, try again: ")
-        
+
         algo = input("Solution to be used (A: A*/ B: BFS/ D: DFS): ")
 
         while algo != 'A' and algo != 'B' and algo != 'D' and algo != 'a' and algo != 'b' and algo != 'd' and algo != 'A*' and algo != 'BFS' and algo != 'DFS' and algo != 'a*' and algo != 'bfs' and algo != 'dfs':
             algo = input("This solution does not exist, try again (A: A*/ B: BFS/ D: DFS): ")
-    
+
         # src = "Arad"
         src = starting_point
         dst = "Bucharest"
-        
+
         if algo == 'A' or algo == 'a':
             # print('---A* Search---')
             astar(src, dst)
@@ -473,15 +481,15 @@ def main():
             # print('---Breadth-first Search---')
             run_bfs(src, dst)
             # run_bfs_alt(src, dst)
-            
+
         elif algo == 'D' or algo == 'd':
             # print('---Depth-first Search---')
             # run_dfs_alt_alt(src, dst)
             # run_dfs_alt(src, dst)
             # run_dfs(src, dst)
             run_dfs_ultra_alt(src, dst)
-        
-        
+
+
         answer = input("Another city? (Y/N): ")
         while answer != 'y' and answer != 'n' and answer != 'Y' and answer != 'N' and answer != 'yes' and answer != 'no' and answer != 'Yes' and answer != 'No':
             answer = input("Invalid answer, try again (Y/N): ")
