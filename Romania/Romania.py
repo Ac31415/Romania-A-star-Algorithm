@@ -9,8 +9,8 @@
 #   Adopted by Wen-Chung Cheng (Andy) for
 #   A1 of Intro to AI course at Florida Atlantic University
 #   User: Wen-Chung Cheng (Andy)
-#   Date: 17/03/2019
-#   Time: 20:59
+#   Date: 06/10/2021
+#   Time: 19:25
 #
 
 import heapq
