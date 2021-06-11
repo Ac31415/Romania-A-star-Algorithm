@@ -458,10 +458,17 @@ def main():
     # print(romania['Arad'])
 
     while Cont:
+        
+        print('List of cities: ')
+        for c in Cities:
+            print('\t\t\t\t' + c)
 
         starting_point = input("Location of departure: ")
 
         while starting_point not in Cities:
+            print('\nList of cities: ')
+            for c in Cities:
+                print('\t\t\t\t' + c)
             starting_point = input("Location not on map, try again: ")
 
         algo = input("Solution to be used (A: A*/ B: BFS/ D: DFS): ")
